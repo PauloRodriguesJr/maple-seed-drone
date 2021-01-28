@@ -26,14 +26,16 @@ void setup() {
   pinMode(pinLED, OUTPUT);
   pinMode(pinLED_debug, OUTPUT);
 
-  Serial.begin(9600);  //Inicia monitor serial, onde serão escritos os dados
-  Serial.println("Iniciando... ");
-  delay(1500);
-  Serial.println("Aperte qualquer tecla para iniciar");
-  while(!Serial.available());  //Só continua quando vc mandar algo!
-  Serial.println("Envie dados entre 1000 e 2000 para o motor");//Sending messages for the user ,futuro: rotina de decolagem.
-  delay(1500);   //Sugestão -Add resposta em  % de feedback transmitido ao moço, só mudar serial  msg
-  Serial.println("Insira um valor de 1000 a 2000 de Thrust ");
+  bool user_inteface=true;
+  if(user_inteface){
+    Serial.begin(9600);  //Inicia monitor serial, onde serão escritos os dados
+    Serial.println("Starting... ");
+    delay(1000);
+    Serial.println("Press any key to start"); 
+    while(!Serial.available());  //Só continua quando vc mandar algo!
+    Serial.println("The potentiometer data will be converter to 1000-2000 range");//Sending messages for the user ,futuro: rotina de decolagem.
+    delay(1000);   //Sugestão -Add resposta em  % de feedback transmitido ao moço, só mudar serial  msg
+  }
 }
 
 void loop() {
