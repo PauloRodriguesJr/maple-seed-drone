@@ -44,11 +44,9 @@ void loop() {
     vw_get_message(buf, &buflen);
     memcpy(&pacote,&buf,buflen);
 
-    int output = map(pacote.valor1, 0, 179, 1000, 2000);
-    Serial.println(output);
+    Serial.println(pacote.valor3);
   
-    ServoMotor.write(output);
-    analogWrite(pinLEDdebug,output);
-    delay(150);
+    ServoMotor.write(pacote.valor3);
+    analogWrite(pinLEDdebug,pacote.valor1);
   }  
 }
