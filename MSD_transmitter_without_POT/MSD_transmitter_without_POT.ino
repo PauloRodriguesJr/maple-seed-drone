@@ -26,48 +26,39 @@ void setup() {
   pinMode(pinLED, OUTPUT);
   pinMode(pinLED_debug, OUTPUT);
 
-  Serial.begin(9600);  //Inicia monitor serial, onde serão escritos os dados
-  Serial.println("Iniciando... ");
-  delay(1500);
-  Serial.println("Aperte qualquer tecla para iniciar");
+  Serial.begin(9600);  // starts serial monitor
+  Serial.println("Starting... ");
+  delay(1000);
+  Serial.println("Press any key to start"); 
   while(!Serial.available());  //Só continua quando vc mandar algo!
-  Serial.println("Envie dados entre 1000 e 2000 para o motor");//Sending messages for the user ,futuro: rotina de decolagem.
-  delay(1500);   //Sugestão -Add resposta em  % de feedback transmitido ao moço, só mudar serial  msg
-  Serial.println("Insira um valor de 1000 a 2000 de Thrust ");
+  Serial.println("Enter a value between 0 and 1024");
+  delay(1000);
 }
 
 void loop() {
   digitalWrite(pinLED, HIGH);
-  //if (Serial.available() > 0)
-  // {
-  //  int Buffer = Serial.parseInt();
-  // if(Buffer>999){
+  if (Serial.available() > 0)
+  {
+  int buff = Serial.parseInt();
+  if(buff<1023){
+    //Mostra o valor no serial monitor
+    Serial.print("Potenciometro: ");
+    Serial.println(buff);
+    //Envia o valor para o motor
+    int  leitura1 = buff; 
+    byte leitura2 = map(leitura1, 0,179, 0, 1023); 
+    int  leitura3 = map(leitura1, 0, 1023, 1000, 2000);
+  
+    pacote.valor1 = leitura1;
+    pacote.valor2 = leitura2;
+    pacote.valor3 = leitura3;
+   
+    Serial.println(pacote.valor1);
+    analogWrite(pinLED_debug, buff);
+    vw_send((uint8_t *)&pacote, sizeof(pacote));
+    vw_wait_tx(); 
+    digitalWrite(pinLED, LOW);
 
-  //Parte que modifiquei do código
-  //Le o valor do potenciometro
-  int valor = Serial.parseInt();
-  //Converte o valor para uma faixa entre 0 e 179
-  int valor_179 = map(valor, 0, 1023, 0, 179); //Observar os intervalos de operação, tinha colocado 1000 - 2000!
-  //Mostra o valor no serial monitor
-  // Serial.print("Potenciometro: ");
-  Serial.println(valor);
-  //Envia o valor para o motor
-
-  int  leitura1 = valor_179;   //Buffer; 
-  byte leitura2 = map(leitura1, 0,179, 0, 1023); 
-  int  leitura3 = map(leitura1, 0, 1023, 1000, 2000);
-
-  pacote.valor1 = leitura1;
-  pacote.valor2 = leitura2;
-  pacote.valor3 = leitura3;
- 
-  Serial.println(pacote.valor1);
-  analogWrite(pinLED_debug, valor_179);
-  vw_send((uint8_t *)&pacote, sizeof(pacote));
-  vw_wait_tx(); 
-  digitalWrite(pinLED, LOW);
-  delay(50);
-    
-   // }
- // }
+    }
+  }
 }
