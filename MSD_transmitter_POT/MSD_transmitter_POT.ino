@@ -8,7 +8,7 @@
 
 struct Package{ // O pacote inclui os parâmetros necessarios para caracterizar o envio de dados
   int  valor1 = 0;   //  Range 0- 1023
-  byte valor2 = 0    // no idea yet
+  byte valor2 = 0;    // no idea yet
   int  valor3 = 0;   // Range 1000 -2000
   };
   
@@ -39,28 +39,28 @@ void setup() {
 void loop() {
   digitalWrite(pinLED, HIGH);
   //Le o valor do potenciometro
-  int val = analogRead(pinPot);
+  int measurement_raw = analogRead(pinPot);
+  Serial.print("Measurement raw: ");
+  Serial.println(measurement_raw);
   //Converte o valor para uma faixa entre 0 e 179
-  valor = map(valor, 0, 179, 0, 1023); //Observar os intervalos de operação, tinha colocado 1000 - 2000!
+  //int measurement = map(measurement_raw, 0, 179, 0, 1023); //Observar os intervalos de operação, tinha colocado 1000 - 2000!
   //Mostra o valor no serial monitor
   Serial.print("Potentiometer Measurement: ");
-  Serial.println(val);
+  Serial.println(measurement_raw);
   //Envia o valor para o motor
 
-  int  leitura1 = valor_179;   //Buffer; 
+  int  leitura1 = measurement_raw;   //Buffer; 
   byte leitura2 = sizeof(leitura1);//map(leitura1, 0,179, 0, 1023); 
-  int  leitura3 = map(leitura1, 0, 1023, 1000, 2000); // Dado a ser usado
+  int  leitura3 = map(measurement_raw, 0, 1023, 1000, 2000); // Dado pro motor
 
   pacote.valor1 = leitura1;
   pacote.valor2 = leitura2;
   pacote.valor3 = leitura3;
  
-  Serial.println(pacote.valor1);
-  analogWrite(pinLED_debug, valor_179);
+  analogWrite(pinLED_debug, measurement_raw);
   vw_send((uint8_t *)&pacote, sizeof(pacote));
   vw_wait_tx(); 
   
   digitalWrite(pinLED, LOW);
-  delay(50);    
-
+  delay(1);
 }
