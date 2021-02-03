@@ -31,3 +31,7 @@ Most of the code deals only with communication between the Receiver and Transmit
 - Integrate with IMU sensors (gyro / mag / accel), as well as a sonar for altitude ranging;
 - Add a controllable flap to the wings;
 - Design a controller for drone stabilization and maneuverability;
+
+## License
+
+This project is released under the MIT License. Please review the [License file](LICENSE) for more details.
