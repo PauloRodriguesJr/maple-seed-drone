@@ -5,10 +5,9 @@ This repository shares the code developed to fly a simple Maple Seed Drone,  whi
 
 The prototype uses two Arduino microcontrollers, the first used as Maple Seed Drone on-board controller, and the second as RC controller.
 
-The main goal of the project was getting the drone lift off the ground. The communication between the boards was achieved using a 400MHz RF module, as shown below.
+The main goal of the project was getting the drone lift off the ground. The communication between the boards was achieved using a 433 MHz RF module, as shown below.
 
 <img src="docs/rf-module.png" width="300"/>
-
 
 ## The prototype
 
