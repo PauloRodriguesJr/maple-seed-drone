@@ -21,7 +21,6 @@ The main goal of the project was getting the drone lift off the ground. The comm
 
 ## Flying results
 
-<img src="docs/monocopter-flight.mp4" width="400"/>
+<img src="docs/monocopter-flight.gif" width="600"/>
 
 ## Future Work
-
