@@ -11,17 +11,17 @@ The main goal of the project was getting the drone lift off the ground. The comm
 
 ## The prototype
 
-<img src="images/maple-seed-drone.png" width="400"/>
+<img src="docs/maple-seed-drone.png" width="400"/>
 
 ## Materials
 
-<img src="images/drone-materials.png" width="600"/>
+<img src="docs/drone-materials.png" width="600"/>
 
 ## Code Explanation
 
 ## Flying results
 
-<img src="images/maple-seed-drone.png" width="400"/>
+<img src="docs/monocopter-drone.mp4" width="400"/>
 
 ## Future Work
 
