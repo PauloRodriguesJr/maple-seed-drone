@@ -1,3 +1,5 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 # The Maple Seed Drone Protoype
 This repository shares the code developed to fly a simple Maple Seed Drone,  which was developed in the UFABC course "Engenharia Unificada" or "Unified Enginnering", taught in  the second trimester of 2019.
 
