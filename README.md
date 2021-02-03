@@ -7,6 +7,7 @@ The prototype uses two Arduino microcontrollers, the first used as Maple Seed Dr
 
 The main goal of the project was getting the drone lift off the ground. The communication between the boards was achieved using a 400MHz RF module, as shown below.
 
+<img src="docs/rf-module.png" width="300"/>
 
 
 ## The prototype
@@ -19,8 +20,15 @@ The main goal of the project was getting the drone lift off the ground. The comm
 
 ## Code Explanation
 
+Most of the code deals only with communication between the Receiver and Transmitter. The Transmitter board reads and process the data from a potentiometer (control stick) and sends it to Receiver board. The Receiver gets the message from the Transmitter and writes the data as PWM input to the motor. So and the flow restarts. 
+
 ## Flying results
 
 <img src="docs/monocopter-flight.gif" width="600"/>
 
 ## Future Work
+
+- Review the motor configuration;
+- Integrate with IMU sensors (gyro / mag / accel), as well as a sonar for altitude ranging;
+- Add a controllable flap to the wings;
+- Design a controller for drone stabilization and maneuverability;
